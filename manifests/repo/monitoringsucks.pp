@@ -4,12 +4,13 @@
 #
 class yum::repo::monitoringsucks (
   $baseurl = 'http://pulp.inuits.eu/pulp/repos/monitoring',
+  $enabled = 1
 ) {
 
   yum::managed_yumrepo { 'monitoringsucks':
     descr          => 'MonitoringSuck at Inuits',
     baseurl        => $baseurl,
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 0,
     failovermethod => 'priority',
     priority       => 99,

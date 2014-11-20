@@ -14,7 +14,9 @@
 #   Default: `undef`
 #
 class yum::repo::sl6 (
-  $mirror_url = undef,
+  $enabled          = 1,
+  $enabled_fastbugs = 1,
+  $mirror_url       = undef,
 ) {
 
   if $mirror_url {
@@ -45,7 +47,7 @@ class yum::repo::sl6 (
     baseurl        => $baseurl_sl6x,
     mirrorlist     => 'http://ftp.scientificlinux.org/linux/scientific/mirrorlist/sl-base-6x.txt',
     failovermethod => 'priority',
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 1,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-sl file:///etc/pki/rpm-gpg/RPM-GPG-KEY-dawson',
     gpgkey_source  => 'puppet:///modules/yum/rpm-gpg/RPM-GPG-KEY-sl',
@@ -56,7 +58,7 @@ class yum::repo::sl6 (
     baseurl        => $baseurl_sl6x_security,
     mirrorlist     => 'http://ftp.scientificlinux.org/linux/scientific/mirrorlist/sl-security-6x.txt',
     failovermethod => 'priority',
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 1,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-sl file:///etc/pki/rpm-gpg/RPM-GPG-KEY-dawson',
   }
@@ -66,7 +68,7 @@ class yum::repo::sl6 (
     baseurl        => $baseurl_sl6x_fastbugs,
     mirrorlist     => 'http://ftp.scientificlinux.org/linux/scientific/mirrorlist/sl-fastbugs-6x.txt',
     failovermethod => 'priority',
-    enabled        => 0,
+    enabled        => $enabled_fastbugs,
     gpgcheck       => 1,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-sl file:///etc/pki/rpm-gpg/RPM-GPG-KEY-dawson',
   }

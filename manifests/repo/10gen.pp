@@ -4,11 +4,12 @@
 #
 class yum::repo::10gen (
   $baseurl = "http://downloads-distro.mongodb.org/repo/redhat/os/${::architecture}",
+  $enabled = 1,
 ) {
   yum::managed_yumrepo { '10gen':
     descr       => '10gen Repository',
     baseurl     => $baseurl,
-    enabled     => 1,
+    enabled     => $enabled,
     gpgcheck    => 0,
   }
 }

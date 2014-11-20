@@ -1,5 +1,6 @@
 class yum::repo::rundeck2 (
-  $baseurl = 'http://dl.bintray.com/rundeck/rundeck-rpm'
+  $baseurl = 'http://dl.bintray.com/rundeck/rundeck-rpm',
+  $enabled = 1
 ){
 
   require yum
@@ -10,6 +11,6 @@ class yum::repo::rundeck2 (
     gpgcheck       => 0,
     priority       => 80,
     failovermethod => 'priority',
-    enabled        => 1,
+    enabled        => $enabled,
   }
 }

@@ -2,7 +2,9 @@
 #
 # This class installs the jpackage6 repo
 #
-class yum::repo::jpackage6 {
+class yum::repo::jpackage6 (
+  $enabled = 1
+) {
 
   yum::managed_yumrepo { 'jpackage':
     descr          => 'JPackage 6 generic',
@@ -10,7 +12,7 @@ class yum::repo::jpackage6 {
     failovermethod => 'priority',
     gpgcheck       => 1,
     gpgkey         => 'http://www.jpackage.org/jpackage.asc',
-    enabled        => 1,
+    enabled        => $enabled,
     priority       => 1,
   }
 

@@ -4,6 +4,7 @@
 #
 class yum::repo::passenger (
   $baseurl    ='http://passenger.stealthymonkeys.com/rhel/$releasever/$basearch',
+  $enabled    = 1,
   $mirrorlist ='http://passenger.stealthymonkeys.com/rhel/mirrors',
 ) {
 
@@ -11,7 +12,7 @@ class yum::repo::passenger (
     descr          => 'Red Hat Enterprise $releasever - Phusion Passenger',
     baseurl        => $baseurl,
     mirrorlist     => $mirrorlist,
-    enabled        => 1 ,
+    enabled        => $enabled,
     gpgcheck       => 0, # To fix key autoimport
     failovermethod => 'priority',
     gpgkey         => 'http://passenger.stealthymonkeys.com/RPM-GPG-KEY-stealthymonkeys.asc',

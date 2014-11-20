@@ -2,13 +2,15 @@
 #
 # This class installs the nginx repo
 #
-class yum::repo::nginx {
+class yum::repo::nginx (
+  $enabled = 1
+) {
   $osver = split($::operatingsystemrelease, '[.]')
 
   yum::managed_yumrepo { 'nginx':
     descr    => 'Nginx official release packages',
     baseurl  => "http://nginx.org/packages/rhel/${osver[0]}/\$basearch/",
-    enabled  => 1,
+    enabled  => $enabled,
     gpgcheck => 0,
     priority => 1,
   }

@@ -5,12 +5,13 @@
 class yum::repo::puppetdevel (
   $baseurl_devel        = 'http://yum.puppetlabs.com/el/$releasever/devel/$basearch',
   $baseurl_dependencies = 'http://yum.puppetlabs.com/el/$releasever/dependencies/$basearch',
+  $enabled              = 1
 ) {
 
   yum::managed_yumrepo { 'puppetlabs_devel':
     descr          => 'Puppet Labs Packages - Devel',
     baseurl        => $baseurl_devel,
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 1,
     failovermethod => 'priority',
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs',
@@ -21,7 +22,7 @@ class yum::repo::puppetdevel (
   yum::managed_yumrepo { 'puppetlabs_dependencies':
     descr          => 'Puppet Labs Packages - Dependencies',
     baseurl        => $baseurl_dependencies,
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 1,
     failovermethod => 'priority',
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs',

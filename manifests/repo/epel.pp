@@ -14,7 +14,13 @@
 #   Default: `undef`
 #
 class yum::repo::epel (
-  $mirror_url = undef,
+  $enabled                   = 1,
+  $enabled_debuginfo         = 0,
+  $enabled_source            = 0,
+  $enabled_testing           = 0,
+  $enabled_testing_debuginfo = 0,
+  $enabled_testing_source    = 0,
+  $mirror_url                = undef,
 ) {
 
   if $mirror_url {
@@ -65,7 +71,7 @@ class yum::repo::epel (
     descr          => "Extra Packages for Enterprise Linux ${osver[0]} - \$basearch",
     baseurl        => $baseurl_epel,
     mirrorlist     => "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-${osver[0]}&arch=\$basearch",
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 1,
     failovermethod => 'priority',
     gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${osver[0]}",
@@ -77,7 +83,7 @@ class yum::repo::epel (
     descr          => "Extra Packages for Enterprise Linux ${osver[0]} - \$basearch - Debug",
     baseurl        => $baseurl_epel_debuginfo,
     mirrorlist     => "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-${osver[0]}&arch=\$basearch",
-    enabled        => 0,
+    enabled        => $enabled_debuginfo,
     gpgcheck       => 1,
     failovermethod => 'priority',
     gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${osver[0]}",
@@ -88,7 +94,7 @@ class yum::repo::epel (
     descr          => "Extra Packages for Enterprise Linux ${osver[0]} - \$basearch - Source",
     baseurl        => $baseurl_epel_source,
     mirrorlist     => "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-source-${osver[0]}&arch=\$basearch",
-    enabled        => 0,
+    enabled        => $enabled_source,
     gpgcheck       => 1,
     failovermethod => 'priority',
     gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${osver[0]}",
@@ -99,7 +105,7 @@ class yum::repo::epel (
     descr          => "Extra Packages for Enterprise Linux ${osver[0]} - Testing - \$basearch",
     baseurl        => $baseurl_epel_testing,
     mirrorlist     => "http://mirrors.fedoraproject.org/mirrorlist?repo=testing-epel${osver[0]}&arch=\$basearch",
-    enabled        => 0,
+    enabled        => $enabled_testing,
     gpgcheck       => 1,
     failovermethod => 'priority',
     gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${osver[0]}",
@@ -110,7 +116,7 @@ class yum::repo::epel (
     descr          => "Extra Packages for Enterprise Linux ${osver[0]} - Testing - \$basearch - Debug",
     baseurl        => $baseurl_epel_testing_debuginfo,
     mirrorlist     => "http://mirrors.fedoraproject.org/mirrorlist?repo=testing-debug-epel${osver[0]}&arch=\$basearch",
-    enabled        => 0,
+    enabled        => $enabled_testing_debuginfo,
     gpgcheck       => 1,
     failovermethod => 'priority',
     gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${osver[0]}",
@@ -121,7 +127,7 @@ class yum::repo::epel (
     descr          => "Extra Packages for Enterprise Linux ${osver[0]} - Testing - \$basearch - Source",
     baseurl        => $baseurl_epel_testing_source,
     mirrorlist     => "http://mirrors.fedoraproject.org/mirrorlist?repo=testing-source-epel${osver[0]}&arch=\$basearch",
-    enabled        => 0,
+    enabled        => $enabled_testing_source,
     gpgcheck       => 1,
     failovermethod => 'priority',
     gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${osver[0]}",

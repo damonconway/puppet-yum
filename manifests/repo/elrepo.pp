@@ -14,7 +14,11 @@
 #   Default: `undef`
 #
 class yum::repo::elrepo (
-  $mirror_url = undef,
+  $enabled         = 1,
+  $enabled_extras  = 0,
+  $enabled_kernel  = 0,
+  $enabled_testing = 0,
+  $mirror_url      = undef,
 ) {
 
   if $mirror_url {
@@ -61,7 +65,7 @@ class yum::repo::elrepo (
     descr          => "ELRepo.org Community Enterprise Linux Repository - ${release}",
     baseurl        => $baseurl_elrepo,
     mirrorlist     => "http://elrepo.org/mirrors-elrepo.${release}",
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 1,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org',
     gpgkey_source  => 'puppet:///modules/yum/rpm-gpg/RPM-GPG-KEY-elrepo.org',
@@ -73,7 +77,7 @@ class yum::repo::elrepo (
     descr          => "ELRepo.org Community Enterprise Linux Testing Repository - ${release}",
     baseurl        => $baseurl_elrepo_testing,
     mirrorlist     => "http://elrepo.org/mirrors-elrepo-testing.${release}",
-    enabled        => 0,
+    enabled        => $enabled_testing,
     gpgcheck       => 1,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org',
     failovermethod => 'priority',
@@ -84,7 +88,7 @@ class yum::repo::elrepo (
     descr          => "ELRepo.org Community Enterprise Linux Kernel Repository - ${release}",
     baseurl        => $baseurl_elrepo_kernel,
     mirrorlist     => "http://elrepo.org/mirrors-elrepo-kernel.${release}",
-    enabled        => 0,
+    enabled        => $enabled_kernel,
     gpgcheck       => 1,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org',
     failovermethod => 'priority',
@@ -95,7 +99,7 @@ class yum::repo::elrepo (
     descr          => "ELRepo.org Community Enterprise Linux Extras Repository - ${release}",
     baseurl        => $baseurl_elrepo_extras,
     mirrorlist     => "http://elrepo.org/mirrors-elrepo-extras.${release}",
-    enabled        => 0,
+    enabled        => $enabled_extras,
     gpgcheck       => 1,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org',
     failovermethod => 'priority',

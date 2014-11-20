@@ -3,7 +3,8 @@
 # This class installs the scl repo
 #
 class yum::repo::scl (
-  $baseurl = ''
+  $baseurl = '',
+  $enabled = 1
 ) {
 
   $osver = split($::operatingsystemrelease, '[.]')
@@ -20,7 +21,7 @@ class yum::repo::scl (
   yum::managed_yumrepo { 'scl':
     descr          => 'CentOS-$releasever - SCL',
     baseurl        => $real_baseurl,
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 0,
     priority       => 20,
     failovermethod => 'priority',

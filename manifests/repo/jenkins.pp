@@ -4,6 +4,7 @@
 #
 class yum::repo::jenkins (
   $baseurl = 'http://pkg.jenkins-ci.org/redhat',
+  $enabled = 1
 ) {
 
   yum::managed_yumrepo { 'jenkins':
@@ -12,7 +13,7 @@ class yum::repo::jenkins (
     failovermethod => 'priority',
     gpgcheck       => 1,
     gpgkey         => 'http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key',
-    enabled        => 1,
+    enabled        => $enabled,
     priority       => 1,
   }
 }

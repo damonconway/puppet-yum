@@ -2,13 +2,15 @@
 #
 # This class installs the rbel repo
 #
-class yum::repo::rbel {
+class yum::repo::rbel (
+  $enabled = 1
+) {
 
   $osver = split($::operatingsystemrelease, '[.]')
   yum::managed_yumrepo { 'rbel':
     descr          => 'RBEL Repo',
     baseurl        => "http://rbel.frameos.org/stable/el${osver[0]}/\$basearch",
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 0,
     failovermethod => 'priority',
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-RBEL' ,

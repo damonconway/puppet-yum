@@ -2,11 +2,13 @@
 #
 # This class installs the atomic repo
 #
-class yum::repo::atomic {
+class yum::repo::atomic (
+  $enabled = 1,
+) {
   yum::managed_yumrepo { 'atomic':
     descr          => 'CentOS / Red Hat Enterprise Linux $releasever - atomicrocketturtle.com',
     mirrorlist     => 'http://www.atomicorp.com/channels/mirrorlist/atomic/centos-$releasever-$basearch',
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 1,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY.art',
     gpgkey_source  => 'puppet:///modules/yum/rpm-gpg/RPM-GPG-KEY.art',

@@ -2,7 +2,10 @@
 #
 # This class installs the jpackage5 repo
 #
-class yum::repo::jpackage5 {
+class yum::repo::jpackage5 (
+  $enabled       = 1,
+  $enabled_devel = 0
+) {
 
   include yum
 
@@ -12,7 +15,7 @@ class yum::repo::jpackage5 {
     failovermethod => 'priority',
     gpgcheck       => 1,
     gpgkey         => 'http://www.jpackage.org/jpackage.asc',
-    enabled        => 1,
+    enabled        => $enabled,
     priority       => 10,
   }
 
@@ -22,7 +25,7 @@ class yum::repo::jpackage5 {
     failovermethod => 'priority',
     gpgcheck       => 1,
     gpgkey         => 'http://www.jpackage.org/jpackage.asc',
-    enabled        => 1,
+    enabled        => $enabled,
     priority       => 10,
   }
 
@@ -32,7 +35,7 @@ class yum::repo::jpackage5 {
     failovermethod => 'priority',
     gpgcheck       => 1,
     gpgkey         => 'http://www.jpackage.org/jpackage.asc',
-    enabled        => 1,
+    enabled        => $enabled,
     priority       => 10,
   }
 
@@ -42,7 +45,7 @@ class yum::repo::jpackage5 {
     failovermethod => 'priority',
     gpgcheck       => 1,
     gpgkey         => 'http://www.jpackage.org/jpackage.asc',
-    enabled        => 0,
+    enabled        => $enabled_devel,
     priority       => 10,
   }
 

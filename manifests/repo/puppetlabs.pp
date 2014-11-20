@@ -5,6 +5,7 @@
 class yum::repo::puppetlabs (
   $baseurl_products     = '',
   $baseurl_dependencies = '',
+  $enabled              = 1
 ) {
   $osver = $::operatingsystem ? {
     'XenServer' => [ '5' ],
@@ -28,7 +29,7 @@ class yum::repo::puppetlabs (
   yum::managed_yumrepo { 'puppetlabs':
     descr          => 'Puppet Labs Packages',
     baseurl        => $real_baseurl_products,
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 1,
     failovermethod => 'priority',
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs',
@@ -43,7 +44,7 @@ class yum::repo::puppetlabs (
   yum::managed_yumrepo { 'puppetlabs_dependencies':
     descr          => 'Puppet Labs Packages',
     baseurl        => $real_baseurl_dependencies,
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 1,
     failovermethod => 'priority',
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs',

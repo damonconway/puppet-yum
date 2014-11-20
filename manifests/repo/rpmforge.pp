@@ -2,7 +2,9 @@
 #
 # This class installs the rpmforce repo
 #
-class yum::repo::rpmforge {
+class yum::repo::rpmforge (
+  $enabled = 1
+) {
 $osver = split($::operatingsystemrelease, '[.]')
   case $osver[0] {
     '6': {
@@ -19,7 +21,7 @@ $osver = split($::operatingsystemrelease, '[.]')
     baseurl  => $baseurl,
     mirrorlist => $mirrorlist,
     descr    => 'RHEL $releasever - RPMforge.net - dag',
-    enabled  => 1,
+    enabled  => $enabled,
     gpgcheck => 1,
     gpgkey   => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag',
     gpgkey_source  => 'puppet:///modules/yum/rpm-gpg/RPM-GPG-KEY-rpmforge-dag',

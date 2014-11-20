@@ -14,7 +14,9 @@
 #   Default: `undef`
 #
 class yum::repo::integ_ganeti (
-  $mirror_url = undef,
+  $enabled        = 1,
+  $enabled_source = 0,
+  $mirror_url     = undef,
 ) {
 
   if $mirror_url {
@@ -53,7 +55,7 @@ class yum::repo::integ_ganeti (
   yum::managed_yumrepo { 'integ-ganeti':
     descr          => "Integ Ganeti Packages ${osver[0]} - \$basearch",
     baseurl        => $baseurl_integ_ganeti,
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 0,
     priority       => 15,
   }
@@ -61,7 +63,7 @@ class yum::repo::integ_ganeti (
   yum::managed_yumrepo { 'integ-ganeti-source':
     descr          => "Integ Ganeti Packages ${osver[0]} - Source",
     baseurl        => $baseurl_integ_ganeti_source,
-    enabled        => 0,
+    enabled        => $enabled_source,
     gpgcheck       => 0,
     priority       => 15,
   }

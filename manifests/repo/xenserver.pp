@@ -14,6 +14,7 @@
 #   Default: `undef`
 #
 class yum::repo::xenserver (
+  $enabled    = 1,
   $mirror_url = undef,
 ) {
 
@@ -63,7 +64,7 @@ class yum::repo::xenserver (
     baseurl        => $baseurl_base,
     mirrorlist     => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os',
     failovermethod => 'priority',
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 1,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5',
     gpgkey_source  => 'puppet:///modules/yum/rpm-gpg/RPM-GPG-KEY-CentOS-5',
@@ -76,7 +77,7 @@ class yum::repo::xenserver (
     baseurl        => $baseurl_updates,
     mirrorlist     => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates',
     failovermethod => 'priority',
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 1,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5',
     priority       => 1,
@@ -88,7 +89,7 @@ class yum::repo::xenserver (
     baseurl        => $baseurl_extras,
     mirrorlist     => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras',
     failovermethod => 'priority',
-    gpgcheck       => 1,
+    gpgcheck       => $enabled,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5',
     priority       => 1,
   }
@@ -98,7 +99,7 @@ class yum::repo::xenserver (
     baseurl        => $baseurl_centosplus,
     mirrorlist     => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=centosplus',
     failovermethod => 'priority',
-    gpgcheck       => 1,
+    gpgcheck       => $enabled,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5',
     priority       => 2,
   }
@@ -108,7 +109,7 @@ class yum::repo::xenserver (
     baseurl        => $baseurl_contrib,
     mirrorlist     => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=contrib',
     failovermethod => 'priority',
-    gpgcheck       => 1,
+    gpgcheck       => $enabled,
     gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5',
     priority       => 10,
   }
@@ -116,7 +117,7 @@ class yum::repo::xenserver (
   yum::managed_yumrepo { 'Citrix':
     descr          => "XenServer ${xenserver_base_release} updates",
     mirrorlist     => "http://updates.vmd.citrix.com/XenServer/${xenserver_base_release}/domain0/mirrorlist",
-    enabled        => 1,
+    enabled        => $enabled,
     gpgcheck       => 1,
     gpgkey         => 'http://updates.vmd.citrix.com/XenServer/RPM-GPG-KEY-6.2.0',
     priority       => 1,
