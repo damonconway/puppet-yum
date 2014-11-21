@@ -3,7 +3,7 @@
 # This class installs the remi repo
 #
 class yum::repo::remi (
-  $enabled      = 1
+  $enabled      = 1,
   $enabled_test = 0
 ) {
   yum::managed_yumrepo { 'remi':

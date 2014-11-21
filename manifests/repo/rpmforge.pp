@@ -20,11 +20,11 @@ class yum::repo::rpmforge (
     case $osver[0] {
       '6': {
         $baseurl   = 'http://apt.sw.be/redhat/el6/en/$basearch/rpmforge'
-        mirrorlist = 'http://apt.sw.be/redhat/el6/en/mirrors-rpmforge'
+        $mirrorlist = 'http://apt.sw.be/redhat/el6/en/mirrors-rpmforge'
       }
       '5': {
         $baseurl   = 'http://apt.sw.be/redhat/el5/en/$basearch/rpmforge'
-        mirrorlist = 'http://apt.sw.be/redhat/el5/en/mirrors-rpmforge'
+        $mirrorlist = 'http://apt.sw.be/redhat/el5/en/mirrors-rpmforge'
       }
       default: { fail('Unsupported version of Enterprise Linux') }
     }

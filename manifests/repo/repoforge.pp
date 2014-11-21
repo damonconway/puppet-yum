@@ -15,7 +15,7 @@ class yum::repo::repoforge (
     )
     $baseurl = $mirror_url
   } else {
-    $baseurl = 'http://apt.sw.be/redhat/el$releasever/en/$basearch/rpmforge',
+    $baseurl = 'http://apt.sw.be/redhat/el$releasever/en/$basearch/rpmforge'
   }
 
   yum::managed_yumrepo { 'repoforge':
